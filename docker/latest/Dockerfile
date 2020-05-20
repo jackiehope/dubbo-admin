@@ -19,7 +19,7 @@ ARG  BRANCH
 #COPY settings.xml /usr/share/maven/ref/
 RUN mkdir /source && wget https://github.com/apache/dubbo-admin/archive/${BRANCH}.zip && unzip -q ${BRANCH}.zip -d /source
 WORKDIR /source/dubbo-admin-${BRANCH}
-RUN mvn -s /usr/share/maven/ref/settings.xml --batch-mode clean package -Dmaven.test.skip=true
+RUN mvn --batch-mode clean package -Dmaven.test.skip=true
 RUN grep '<artifactId>dubbo-admin</artifactId>' pom.xml -A 1 | grep version | grep -o '>.*<' | tr -d '><' > /source/version
 
 
