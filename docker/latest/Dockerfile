@@ -16,7 +16,7 @@ ARG  BRANCH=develop
 
 FROM maven:3-openjdk-8
 ARG  BRANCH
-COPY settings.xml /usr/share/maven/ref/
+#COPY settings.xml /usr/share/maven/ref/
 RUN mkdir /source && wget https://github.com/apache/dubbo-admin/archive/${BRANCH}.zip && unzip -q ${BRANCH}.zip -d /source
 WORKDIR /source/dubbo-admin-${BRANCH}
 RUN mvn -s /usr/share/maven/ref/settings.xml --batch-mode clean package -Dmaven.test.skip=true
